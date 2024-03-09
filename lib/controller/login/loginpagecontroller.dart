@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:ktaapp/screens/home/homepage.dart';
 import 'package:ktaapp/screens/navigation/navigation.dart';
 import 'package:ktaapp/screens/transition/successloginscreen.dart';
 
@@ -91,10 +90,7 @@ class LoginController extends GetxController {
 
 void onLoginSuccess() {
   Get.off(() => const SuccessLoginScreen());
-
-  // Menunda kembali ke halaman sebelumnya setelah 3 detik (sesuaikan dengan kebutuhan Anda)
   Future.delayed(const Duration(seconds: 5), () {
-    // AuthenticationRepository.instance.pindahHalaman();
-    Get.offAll(() => const NavigationPage()); // Pergi ke halaman baru
+    Get.offAll(() => const NavigationPage());
   });
 }

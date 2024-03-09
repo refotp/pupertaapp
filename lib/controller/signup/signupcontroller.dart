@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:ktaapp/controller/home/homepagecontroller.dart';
 import 'package:ktaapp/screens/home/homepage.dart';
 
 class SignUpController extends GetxController {
@@ -23,9 +22,7 @@ class SignUpController extends GetxController {
       }
       openDialog();
       Future.delayed(const Duration(seconds: 3));
-      Get.to(() => HomePage(
-            controller: HomePageController(),
-          ));
+      Get.to(() => const HomePage());
     } catch (e) {}
   }
   // Future<void> signUp() async {

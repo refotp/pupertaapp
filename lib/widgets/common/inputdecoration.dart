@@ -3,20 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 
-InputDecoration textFieldDecoration(String label, IconData? icon) {
+InputDecoration textFieldDecoration(String label) {
   return InputDecoration(
+      filled: true,
+      fillColor: Color.fromARGB(29, 196, 77, 26),
       constraints: BoxConstraints(maxHeight: 100.h),
       labelText: label,
       labelStyle: TextStyle(
-        color: ColorConst.abu.withOpacity(0.5),
+        color: ColorConst.abuTua.withOpacity(0.5),
       ),
       floatingLabelBehavior: FloatingLabelBehavior.never,
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+        borderSide: const BorderSide(style: BorderStyle.none),
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.black26),
+        borderSide: const BorderSide(style: BorderStyle.none),
         borderRadius: BorderRadius.circular(12),
       ),
       errorBorder: OutlineInputBorder(
@@ -26,10 +28,6 @@ InputDecoration textFieldDecoration(String label, IconData? icon) {
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.red),
-      ),
-      prefixIcon: Icon(
-        icon,
-        color: ColorConst.abu,
       ),
       contentPadding: const EdgeInsets.only(
         top: 20,

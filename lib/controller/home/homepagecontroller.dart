@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 class HomePageController extends GetxController {
   static HomePageController get instance => Get.find();
   final zoomDrawerController = ZoomDrawerController();
-
-  RxInt currentIndex = 0.obs;
+  final RxInt currentIndex = 0.obs;
   PageController pageController = PageController(viewportFraction: 0.9);
   void onPageChanged(index) {
     currentIndex.value = index;
@@ -14,6 +13,5 @@ class HomePageController extends GetxController {
 
   void toggleDrawer() {
     zoomDrawerController.toggle?.call();
-    update();
   }
 }

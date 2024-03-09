@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/signup/signupcontroller.dart';
 import 'package:ktaapp/helper/validator.dart';
@@ -45,8 +44,7 @@ class SignUpPage extends StatelessWidget {
                         keyboardType: TextInputType.name,
                         controller: controller.emailTextEditingController,
                         cursorColor: Colors.amber[600],
-                        decoration: textFieldDecoration(
-                            'praktikno@gmail.com', Ionicons.mail),
+                        decoration: textFieldDecoration('praktikno@gmail.com'),
                       ),
                       const SizedBox(
                         height: 20,
@@ -58,8 +56,7 @@ class SignUpPage extends StatelessWidget {
                         keyboardType: TextInputType.phone,
                         controller: controller.phoneTextEditingController,
                         cursorColor: Colors.amber[600],
-                        decoration:
-                            textFieldDecoration('08XXXXXXXXXX', Ionicons.call),
+                        decoration: textFieldDecoration('08XXXXXXXXXX'),
                       ),
                       const SizedBox(
                         height: 20,
