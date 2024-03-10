@@ -6,11 +6,11 @@ import 'package:ktaapp/constants/colorconst.dart';
 InputDecoration textFieldDecoration(String label) {
   return InputDecoration(
       filled: true,
-      fillColor: Color.fromARGB(29, 196, 77, 26),
+      fillColor: ColorConst.sekunder.withOpacity(0.2),
       constraints: BoxConstraints(maxHeight: 100.h),
       labelText: label,
       labelStyle: TextStyle(
-        color: ColorConst.abuTua.withOpacity(0.5),
+        color: ColorConst.tersier.withOpacity(0.5),
       ),
       floatingLabelBehavior: FloatingLabelBehavior.never,
       focusedBorder: OutlineInputBorder(

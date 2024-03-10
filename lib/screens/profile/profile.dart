@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
@@ -22,7 +23,7 @@ class ProfilePage extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: ColorConst.abuTua,
+                      color: ColorConst.tersier,
                     ),
                     width: double.infinity,
                     child: Padding(
@@ -89,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                             children: [
                               Icon(
                                 Ionicons.checkmark_circle,
-                                color: ColorConst.merahMuda,
+                                color: ColorConst.sekunder,
                                 size: 28,
                               ),
                               SizedBox(
@@ -126,26 +127,17 @@ class ProfilePage extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.only(top: 20),
                       decoration: BoxDecoration(
-                        color: ColorConst.abuTua,
+                        color: ColorConst.tersier,
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Kartu Tanda Anggota',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_right_rounded,
-                              size: 20,
-                              color: Colors.white,
-                            )
-                          ],
+                      child: const ListTile(
+                        leading: Icon(CupertinoIcons.person_crop_rectangle),
+                        iconColor: Colors.white,
+                        textColor: Colors.white,
+                        title: Text('Kartu Tanda Anggota'),
+                        trailing: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
                         ),
                       ),
                     ),
@@ -172,7 +164,7 @@ class ProfilePage extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: ColorConst.merahOren,
+                        color: ColorConst.primer,
                       ),
                       child: const Padding(
                         padding: EdgeInsets.all(12),

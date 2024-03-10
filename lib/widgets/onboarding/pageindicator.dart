@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/onboarding/onboardingcontroller.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -18,8 +19,8 @@ class PageIndicator extends StatelessWidget {
         onDotClicked: controller.dotNavigationClick,
         count: 3,
         effect: const ExpandingDotsEffect(
-            activeDotColor: Colors.red,
-            dotColor: Colors.black,
+            activeDotColor: ColorConst.sekunder,
+            dotColor: ColorConst.tersier,
             dotWidth: 24,
             dotHeight: 6),
       ),

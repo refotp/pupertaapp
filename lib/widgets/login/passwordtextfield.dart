@@ -34,35 +34,27 @@ class PasswordTextField extends StatelessWidget {
             cursorColor: Colors.amber[600],
             obscureText: controller.isHidden.value,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: ColorConst.sekunder.withOpacity(0.25),
               constraints: BoxConstraints(maxHeight: 100.h),
-              labelText: 'kepitingBerkEpalaRusa123',
               labelStyle: TextStyle(color: ColorConst.abu.withOpacity(0.5)),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
-                borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+                borderSide: const BorderSide(style: BorderStyle.none),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.black26),
+                borderSide: const BorderSide(style: BorderStyle.none),
                 borderRadius: BorderRadius.circular(12),
               ),
               errorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.black26),
+                borderSide: const BorderSide(style: BorderStyle.none),
                 borderRadius: BorderRadius.circular(12),
               ),
               focusedErrorBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.red),
+                borderSide: const BorderSide(style: BorderStyle.none),
                 borderRadius: BorderRadius.circular(12),
               ),
-              prefixIcon: controller.isHidden.value
-                  ? const Icon(
-                      Ionicons.lock_closed,
-                      color: ColorConst.abu,
-                    )
-                  : const Icon(
-                      Ionicons.lock_open,
-                      color: ColorConst.abu,
-                    ),
               suffixIcon: Obx(
                 () => IconButton(
                   onPressed: () {
@@ -71,11 +63,11 @@ class PasswordTextField extends StatelessWidget {
                   icon: controller.isHidden.value
                       ? const Icon(
                           Ionicons.eye_off,
-                          color: ColorConst.merahMuda,
+                          color: ColorConst.tersier,
                         )
                       : const Icon(
                           Ionicons.eye,
-                          color: ColorConst.merahMuda,
+                          color: ColorConst.tersier,
                         ),
                 ),
               ),

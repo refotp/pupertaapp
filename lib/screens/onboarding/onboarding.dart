@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ktaapp/constants/stringconst.dart';
 import 'package:ktaapp/controller/onboarding/onboardingcontroller.dart';
 import 'package:ktaapp/screens/onboarding/onboardingcontent.dart';
 import 'package:ktaapp/widgets/onboarding/pageindicator.dart';
@@ -24,19 +25,19 @@ class OnBoardingPage extends StatelessWidget {
               child: PageView(
                 controller: controller.pageController,
                 onPageChanged: controller.onPageChanged,
-                children: const [
+                children: [
                   OnBoardingContent(
-                      img: 'assets/onboarding/Animation - 1709457231011.json',
+                      img: StringConst.imageOnBoarding[0],
                       title: 'Selamat datang',
                       subTitle:
                           'Halo kawan pensiunan pertamina, selamat datang di Puperta !'),
                   OnBoardingContent(
-                      img: 'assets/onboarding/Animation - 1709467132747.json',
+                      img: StringConst.imageOnBoarding[1],
                       title: 'Daftarkan keanggotaanmu',
                       subTitle:
                           'Kami disini hadir untuk membantumu untuk mendapatkan keanggotaan pensiunan. Banyak manfaat yang bisa kamu dapatkan jika kamu terdaftar sebagai anggota '),
                   OnBoardingContent(
-                      img: 'assets/onboarding/Animation - 1709466234770.json',
+                      img: StringConst.imageOnBoarding[2],
                       title: 'Keamanan terjamin',
                       subTitle:
                           'Datamu akan kami jaga dengan baik, karena datamu sangat berharga bagi kami. Tunggu apa lagi, ayo bergabung bersama kami'),

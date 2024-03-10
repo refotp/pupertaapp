@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/login/loginpagecontroller.dart';
 import 'package:ktaapp/screens/signup/signuppage.dart';
 import 'package:ktaapp/widgets/login/emailtextfield.dart';
@@ -65,7 +66,7 @@ class LoginPage extends StatelessWidget {
                     elevation: 0,
                     minimumSize: Size(double.maxFinite, 60.h),
                     surfaceTintColor: Colors.white,
-                    backgroundColor: const Color.fromARGB(255, 196, 77, 26),
+                    backgroundColor: ColorConst.primer,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

@@ -10,16 +10,30 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConst.abuTua,
+      backgroundColor: ColorConst.tersier,
       body: Theme(
         data: ThemeData.dark(),
         child: Column(
           children: [
-            const Spacer(),
+            const Spacer(
+              flex: 1,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.white12,
+                  borderRadius: BorderRadius.circular(50)),
+              padding: EdgeInsets.all(8),
+              child: Image.asset(
+                'assets/login_signup/Untitled-1 copy.png',
+                width: 50,
+                height: 50,
+              ),
+            ),
+            SizedBox(height: 10),
             _buildMenuItem(context, 0, 'Home', Ionicons.home),
             _buildMenuItem(context, 1, 'Profile', Ionicons.person),
             const Spacer(
-              flex: 2,
+              flex: 3,
             ),
           ],
         ),

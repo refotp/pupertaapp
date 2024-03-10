@@ -88,7 +88,7 @@ class SignUpPage extends StatelessWidget {
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: ColorConst.merahOren),
+                        color: ColorConst.primer),
                     child: Padding(
                       padding: const EdgeInsets.all(18.0),
                       child: Center(

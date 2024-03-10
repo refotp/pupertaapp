@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar.medium(
       leading: const MenuWidget(),
-      backgroundColor: ColorConst.merahOren,
+      backgroundColor: ColorConst.primer,
       centerTitle: true,
       title: Text(
         title,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:ktaapp/constants/colorconst.dart';
 
 class NavigateToLogin extends StatelessWidget {
   const NavigateToLogin({
@@ -14,7 +15,7 @@ class NavigateToLogin extends StatelessWidget {
       height: 60.h,
       padding: const EdgeInsets.only(top: 8, bottom: 8, left: 12, right: 12),
       decoration: const BoxDecoration(
-        color: Colors.red,
+        color: ColorConst.primer,
         borderRadius: BorderRadius.all(
           Radius.circular(16),
         ),

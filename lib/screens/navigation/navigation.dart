@@ -17,7 +17,7 @@ class NavigationPage extends StatelessWidget {
         borderRadius: 40,
         angle: 0,
         showShadow: true,
-        menuBackgroundColor: ColorConst.abuTua,
+        menuBackgroundColor: ColorConst.tersier,
         menuScreen: MenuScreen(
           controller: controller,
         ),

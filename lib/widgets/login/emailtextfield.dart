@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/login/loginpagecontroller.dart';
 import 'package:ktaapp/helper/validator.dart';
@@ -26,35 +25,32 @@ class EmailTextField extends StatelessWidget {
       TextFormField(
         validator: (value) => Validator.validateEmptyText('Email', value),
         controller: controller.emailController,
-        cursorColor: Colors.amber[600],
+        cursorColor: ColorConst.tersier,
         decoration: InputDecoration(
+          filled: true,
+          fillColor: ColorConst.sekunder.withOpacity(0.25),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.red),
+            borderSide: const BorderSide(style: BorderStyle.none),
             borderRadius: BorderRadius.circular(12),
           ),
           constraints: BoxConstraints(maxHeight: 100.h),
-          labelText: 'praktikno@gmail.com',
           labelStyle: TextStyle(color: ColorConst.abu.withOpacity(0.5)),
           floatingLabelBehavior: FloatingLabelBehavior.never,
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-            borderSide: const BorderSide(color: Colors.blue, width: 1.5),
+            borderSide: const BorderSide(style: BorderStyle.none),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black26),
+            borderSide: const BorderSide(style: BorderStyle.none),
             borderRadius: BorderRadius.circular(12),
           ),
           errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.black26),
+              borderSide: const BorderSide(style: BorderStyle.none),
               borderRadius: BorderRadius.circular(12)),
           contentPadding: const EdgeInsets.only(
             top: 20,
             left: 16,
             bottom: 20,
-          ),
-          prefixIcon: const Icon(
-            Ionicons.mail,
-            color: ColorConst.abu,
           ),
         ),
       ),

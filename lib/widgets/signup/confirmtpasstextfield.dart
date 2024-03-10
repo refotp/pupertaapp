@@ -67,11 +67,11 @@ class ConfirmPassTextField extends StatelessWidget {
             icon: controller.isHidden.value
                 ? const Icon(
                     Ionicons.eye_off,
-                    color: ColorConst.merahMuda,
+                    color: ColorConst.sekunder,
                   )
                 : const Icon(
                     Ionicons.eye,
-                    color: ColorConst.merahMuda,
+                    color: ColorConst.sekunder,
                   ),
           ),
         ),

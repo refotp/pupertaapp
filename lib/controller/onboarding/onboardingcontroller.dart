@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/screens/login/loginpage.dart';
 import 'package:ktaapp/widgets/onboarding/navigatetologin.dart';
 import 'package:ktaapp/widgets/onboarding/nextbutton.dart';
@@ -45,7 +46,7 @@ class OnBoardingController extends GetxController {
           style: TextStyle(
               fontSize: 18.spMin,
               fontWeight: FontWeight.w600,
-              color: Colors.red),
+              color: ColorConst.primer),
         ),
       );
     } else {

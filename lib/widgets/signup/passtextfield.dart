@@ -63,11 +63,11 @@ class PassTextField extends StatelessWidget {
             icon: controller.isVisible.value
                 ? const Icon(
                     Ionicons.eye_off,
-                    color: ColorConst.merahMuda,
+                    color: ColorConst.sekunder,
                   )
                 : const Icon(
                     Ionicons.eye,
-                    color: ColorConst.merahMuda,
+                    color: ColorConst.sekunder,
                   ),
           ),
         ),

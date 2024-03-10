@@ -9,7 +9,7 @@ class SuccessLoginScreen extends StatelessWidget {
     return const Scaffold(
       backgroundColor: Colors.white,
       body: SuccessScreenBody(
-          img: 'assets/login_signup/Animation - 1704531583586 (2).json',
+          img: 'assets/login_signup/Animation - 1704531583586 (3).json',
           title: 'Selamat datang kembali',
           subtitle:
               'Kami sedang mengalihkan anda ke halaman utama. nikmatilah layanan yang telah kami sediakan'),

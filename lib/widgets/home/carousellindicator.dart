@@ -18,7 +18,7 @@ class CarouselIndicator extends StatelessWidget {
         controller: controller.pageController,
         count: 3,
         effect: const ExpandingDotsEffect(
-            activeDotColor: ColorConst.merahMuda,
+            activeDotColor: ColorConst.sekunder,
             dotHeight: 5,
             dotColor: ColorConst.abu),
       ),

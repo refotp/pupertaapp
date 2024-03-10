@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Center(
                   child: Lottie.asset(
-                    'assets/home/Animation - 1709559490243.json',
+                    'assets/home/Animation - 1709559490243 (1).json',
                     width: 320,
                     frameRate: const FrameRate(30.0),
                   ),
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           Get.to(() => const RegisterKta());
         },
-        backgroundColor: ColorConst.merahOren,
+        backgroundColor: ColorConst.primer,
         child: const Icon(
           Ionicons.add,
           color: Colors.white,
