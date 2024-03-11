@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
+import 'package:ktaapp/screens/editprofile/editprofile.dart';
 import 'package:ktaapp/widgets/common/appbar.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -14,9 +16,14 @@ class ProfilePage extends StatelessWidget {
       body: CustomScrollView(
         shrinkWrap: true,
         slivers: [
-          const AppBarWidget(title: 'My Profile'),
+          const AppBarWidget(
+            title: 'My Profile',
+            image: 'assets/profile/header halaman profil.png',
+            useActions: true,
+          ),
           SliverToBoxAdapter(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -50,16 +57,15 @@ class ProfilePage extends StatelessWidget {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 24),
-                                  ),
-                                  const Text(
-                                    'refo@gmail.com',
-                                    style: TextStyle(color: Colors.white60),
+                                        fontSize: 20),
                                   ),
                                   InkWell(
-                                    overlayColor: MaterialStatePropertyAll(
-                                        Colors.transparent),
-                                    onTap: () {},
+                                    overlayColor:
+                                        const MaterialStatePropertyAll(
+                                            Colors.transparent),
+                                    onTap: () {
+                                      Get.to(() => const EditProfilePage());
+                                    },
                                     child: const Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -79,11 +85,13 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 16),
-                            width: double.infinity,
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          const Divider(
+                            color: Colors.white,
                             height: 1,
-                            color: Colors.white70,
+                            thickness: 1,
                           ),
                           const SizedBox(height: 12),
                           const Row(
@@ -101,7 +109,7 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.w600),
                               )
                             ],
                           ),
@@ -112,10 +120,76 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Container(
-                    width: double.infinity,
+                  child: Divider(
+                    color: ColorConst.tersier.withOpacity(0.2),
                     height: 1,
-                    color: ColorConst.abu,
+                    thickness: 1,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Email',
+                        style: TextStyle(
+                            color: ColorConst.tersier,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16),
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Ionicons.mail_outline,
+                          color: ColorConst.primer,
+                        ),
+                        title: Text('Utama'),
+                        subtitle: Text(
+                          'refotri2001@gmail.com',
+                          style: TextStyle(
+                              color: ColorConst.tersier,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Divider(
+                    color: ColorConst.tersier.withOpacity(0.2),
+                    height: 1,
+                    thickness: 1,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Nomor telefon',
+                        style: TextStyle(
+                            color: ColorConst.tersier,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16),
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Ionicons.call_outline,
+                          color: ColorConst.primer,
+                        ),
+                        title: Text('Utama'),
+                        subtitle: Text(
+                          '085869548854',
+                          style: TextStyle(
+                              color: ColorConst.tersier,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 InkWell(
@@ -174,7 +248,7 @@ class ProfilePage extends StatelessWidget {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

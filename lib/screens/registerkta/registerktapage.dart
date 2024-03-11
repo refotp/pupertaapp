@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
+import 'package:ktaapp/controller/registerkta/registerktacontroller.dart';
 import 'package:ktaapp/helper/validator.dart';
 import 'package:ktaapp/widgets/common/inputdecoration.dart';
 import 'package:ktaapp/widgets/signup/titlefield.dart';
@@ -12,6 +15,8 @@ class RegisterKta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = RegisterKtaController();
+    controller.onInit();
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
@@ -107,13 +112,13 @@ class RegisterKta extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const TitleField(title: 'Domisili'),
+                    const TitleField(title: 'Domisili Provinsi'),
                     GestureDetector(
                       onTap: () {
                         showCupertinoModalPopup(
                           context: context,
                           builder: (context) => Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadiusDirectional.vertical(
                                     top: Radius.circular(24))),
@@ -121,14 +126,17 @@ class RegisterKta extends StatelessWidget {
                             height: 300,
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (a) {},
-                              children: [
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                              ],
+                              onSelectedItemChanged: (provinsi) {
+                                controller.provinsi.value =
+                                    controller.daftarProvinsi[provinsi]['name'];
+                                controller.fetchKabupaten(
+                                    controller.daftarProvinsi[provinsi]['id']);
+                              },
+                              children: controller.daftarProvinsi
+                                  .map((element) => Center(
+                                        child: Text(element["name"]),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                         );
@@ -144,11 +152,12 @@ class RegisterKta extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Provinsi',
-                                style: TextStyle(
-                                    color: ColorConst.tersier.withOpacity(0.5),
-                                    fontSize: 16),
+                              Obx(
+                                () => Text(
+                                  controller.provname,
+                                  style: const TextStyle(
+                                      color: ColorConst.tersier, fontSize: 16),
+                                ),
                               ),
                               Icon(
                                 Icons.arrow_drop_down,
@@ -168,7 +177,7 @@ class RegisterKta extends StatelessWidget {
                         showCupertinoModalPopup(
                           context: context,
                           builder: (context) => Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadiusDirectional.vertical(
                                     top: Radius.circular(24))),
@@ -176,14 +185,17 @@ class RegisterKta extends StatelessWidget {
                             height: 300,
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (a) {},
-                              children: [
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                              ],
+                              onSelectedItemChanged: (kabupaten) {
+                                controller.kabupaten.value = controller
+                                    .daftarKabupaten[kabupaten]['name'];
+                                controller.fetchKecamatan(controller
+                                    .daftarKabupaten[kabupaten]['id']);
+                              },
+                              children: controller.daftarKabupaten
+                                  .map((element) => Center(
+                                        child: Text(element['name']),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                         );
@@ -199,11 +211,12 @@ class RegisterKta extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Provinsi',
-                                style: TextStyle(
-                                    color: ColorConst.abu.withOpacity(0.5),
-                                    fontSize: 16),
+                              Obx(
+                                () => Text(
+                                  controller.kabname,
+                                  style: const TextStyle(
+                                      color: ColorConst.tersier, fontSize: 16),
+                                ),
                               ),
                               Icon(
                                 Icons.arrow_drop_down,
@@ -223,7 +236,7 @@ class RegisterKta extends StatelessWidget {
                         showCupertinoModalPopup(
                           context: context,
                           builder: (context) => Container(
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadiusDirectional.vertical(
                                     top: Radius.circular(24))),
@@ -231,14 +244,15 @@ class RegisterKta extends StatelessWidget {
                             height: 300,
                             child: CupertinoPicker(
                               itemExtent: 64,
-                              onSelectedItemChanged: (a) {},
-                              children: [
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                                Center(child: Text('data')),
-                              ],
+                              onSelectedItemChanged: (kecamatan) {
+                                controller.kecamatan.value = controller
+                                    .daftarKecamatan[kecamatan]['name'];
+                              },
+                              children: controller.daftarKecamatan
+                                  .map((element) => Center(
+                                        child: Text(element['name']),
+                                      ))
+                                  .toList(),
                             ),
                           ),
                         );
@@ -254,12 +268,12 @@ class RegisterKta extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Provinsi',
-                                style: TextStyle(
-                                    color: ColorConst.abu.withOpacity(0.5),
-                                    fontSize: 16),
-                              ),
+                              Obx(() => Text(
+                                    controller.kecname,
+                                    style: const TextStyle(
+                                        color: ColorConst.tersier,
+                                        fontSize: 16),
+                                  )),
                               Icon(
                                 Icons.arrow_drop_down,
                                 color: ColorConst.tersier.withOpacity(0.5),
@@ -274,15 +288,17 @@ class RegisterKta extends StatelessWidget {
                     ),
                     const TitleField(title: 'Unggah foto anda'),
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         width: 160,
                         height: 160,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(
-                                'assets/registerkta/avatar-1577909_1280.png'),
-                          ),
-                        ),
+                        child: Obx(() => controller.pickedFile.value == null
+                            ? Image.asset(
+                                'assets/registerkta/avatar-1577909_1280.png',
+                              )
+                            : Image.file(
+                                File(controller.imageFile!.path),
+                                fit: BoxFit.fitWidth,
+                              )),
                       ),
                     ),
                     const SizedBox(
@@ -292,7 +308,9 @@ class RegisterKta extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.captureImageFromCamera();
+                          },
                           child: Container(
                             width: 120.w,
                             height: 60.h,
@@ -316,7 +334,9 @@ class RegisterKta extends StatelessWidget {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            controller.pickImageFromGallery();
+                          },
                           child: Container(
                             width: 120.w,
                             height: 60.h,

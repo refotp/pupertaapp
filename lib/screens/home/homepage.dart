@@ -20,6 +20,8 @@ class HomePage extends StatelessWidget {
         slivers: [
           const AppBarWidget(
             title: 'Home',
+            image: 'assets/profile/home-4329930-3599741.png',
+            useActions: false,
           ),
           SliverToBoxAdapter(
             child: Column(
