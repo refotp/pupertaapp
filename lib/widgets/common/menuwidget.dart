@@ -9,7 +9,7 @@ class MenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          ZoomDrawer.of(context)!.toggle();
+          ZoomDrawer.of(context)?.toggle();
         },
         icon: const Icon(
           Ionicons.menu,

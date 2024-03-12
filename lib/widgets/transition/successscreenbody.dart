@@ -38,10 +38,13 @@ class SuccessScreenBody extends StatelessWidget {
                 const SizedBox(
                   height: 12,
                 ),
-                Text(
-                  subtitle,
-                  style: TextStyle(color: Colors.black54, fontSize: 16.spMin),
-                  textAlign: TextAlign.center,
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Text(
+                    subtitle,
+                    style: TextStyle(color: Colors.black54, fontSize: 16.spMin),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             )
