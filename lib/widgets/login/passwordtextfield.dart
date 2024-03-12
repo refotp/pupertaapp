@@ -31,7 +31,9 @@ class PasswordTextField extends StatelessWidget {
             controller: controller.passwordController,
             validator: (value) =>
                 Validator.validateEmptyText('Password', value),
-            cursorColor: Colors.amber[600],
+            cursorColor: ColorConst.tersier,
+            style: const TextStyle(
+                color: ColorConst.tersier, fontWeight: FontWeight.w600),
             obscureText: controller.isHidden.value,
             decoration: InputDecoration(
               filled: true,

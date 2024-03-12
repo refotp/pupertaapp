@@ -26,6 +26,8 @@ class EmailTextField extends StatelessWidget {
         validator: (value) => Validator.validateEmptyText('Email', value),
         controller: controller.emailController,
         cursorColor: ColorConst.tersier,
+        style: const TextStyle(
+            color: ColorConst.tersier, fontWeight: FontWeight.w600),
         decoration: InputDecoration(
           filled: true,
           fillColor: ColorConst.sekunder.withOpacity(0.25),

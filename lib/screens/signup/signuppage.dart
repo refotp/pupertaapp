@@ -43,7 +43,10 @@ class SignUpPage extends StatelessWidget {
                             Validator.validateEmptyText('Email', value),
                         keyboardType: TextInputType.name,
                         controller: controller.emailTextEditingController,
-                        cursorColor: Colors.amber[600],
+                        cursorColor: ColorConst.tersier,
+                        style: const TextStyle(
+                            color: ColorConst.tersier,
+                            fontWeight: FontWeight.w400),
                         decoration: textFieldDecoration('praktikno@gmail.com'),
                       ),
                       const SizedBox(
@@ -55,7 +58,7 @@ class SignUpPage extends StatelessWidget {
                             Validator.validateEmptyText('Nomor HP', value),
                         keyboardType: TextInputType.phone,
                         controller: controller.phoneTextEditingController,
-                        cursorColor: Colors.amber[600],
+                        cursorColor: ColorConst.tersier,
                         decoration: textFieldDecoration('08XXXXXXXXXX'),
                       ),
                       const SizedBox(

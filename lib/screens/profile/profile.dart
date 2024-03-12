@@ -44,7 +44,7 @@ class ProfilePage extends StatelessWidget {
                               const CircleAvatar(
                                 radius: 40,
                                 backgroundImage:
-                                    AssetImage('assets/home/profil_1.png'),
+                                    AssetImage('assets/profile/profil_1.png'),
                               ),
                               const SizedBox(
                                 width: 16,
@@ -156,7 +156,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Divider(
                     color: ColorConst.tersier.withOpacity(0.2),
                     height: 1,
@@ -205,12 +205,15 @@ class ProfilePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const ListTile(
-                        leading: Icon(CupertinoIcons.person_crop_rectangle),
-                        iconColor: Colors.white,
+                        leading: Icon(
+                          CupertinoIcons.person_crop_square_fill,
+                          color: ColorConst.sekunder,
+                        ),
                         textColor: Colors.white,
                         title: Text('Kartu Tanda Anggota'),
                         trailing: Icon(
                           Icons.arrow_forward_ios,
+                          color: Colors.white,
                           size: 16,
                         ),
                       ),

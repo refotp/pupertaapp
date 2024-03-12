@@ -29,6 +29,9 @@ InputDecoration textFieldDecoration(String label) {
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: Colors.red),
       ),
+      disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(style: BorderStyle.none)),
       contentPadding: const EdgeInsets.only(
         top: 20,
         left: 16,
