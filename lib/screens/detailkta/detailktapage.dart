@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ktaapp/constants/colorconst.dart';
+import 'package:ktaapp/controller/detailkta/detailktacontroller.dart';
 import 'package:ktaapp/widgets/common/appbar.dart';
 
 class DetailKtaPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class DetailKtaPage extends StatelessWidget {
   final AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> data;
   @override
   Widget build(BuildContext context) {
+    final controller = DetailKtaController();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -178,7 +180,9 @@ class DetailKtaPage extends StatelessWidget {
                                 ),
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.generatePdf(data);
+                                },
                                 child: Container(
                                   width: 140,
                                   height: 40,

@@ -21,7 +21,12 @@ class FirebaseService {
     TaskSnapshot downloadUrl = await uploadTask.whenComplete(() => null);
     String imageUrl = await downloadUrl.ref.getDownloadURL();
 
-    await _firestore.collection('Users').doc(authUser?.uid).set({
+    await _firestore
+        .collection('Users')
+        .doc(authUser?.uid)
+        .collection('Data Anggota')
+        .doc(authUser?.uid)
+        .set({
       'Nama Lengkap': nama,
       'Nomor Pensiun': nomorPensiun,
       'Nomor Induk Kependudukan': nomorIndukKependudukan,

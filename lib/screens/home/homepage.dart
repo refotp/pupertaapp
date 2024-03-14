@@ -39,6 +39,8 @@ class HomePage extends StatelessWidget {
                   stream: FirebaseFirestore.instance
                       .collection('Users')
                       .doc(AuthenticationRepository().authUser?.uid)
+                      .collection('Data Anggota')
+                      .doc(AuthenticationRepository().authUser?.uid)
                       .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -102,7 +104,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     image: const DecorationImage(
                                         fit: BoxFit.cover,
-                                        alignment: AlignmentDirectional(1, -12),
+                                        alignment: AlignmentDirectional(0, -2),
                                         image: AssetImage(
                                             'assets/home/background kartu.png'))),
                                 child: Padding(
@@ -187,18 +189,16 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: controller.isVisible.value
-          ? null
-          : FloatingActionButton(
-              onPressed: () {
-                Get.to(() => const RegisterKta());
-              },
-              backgroundColor: ColorConst.primer,
-              child: const Icon(
-                Ionicons.add,
-                color: Colors.white,
-              ),
-            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const RegisterKta());
+        },
+        backgroundColor: ColorConst.primer,
+        child: const Icon(
+          Ionicons.add,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }
