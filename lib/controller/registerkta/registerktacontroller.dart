@@ -1,11 +1,21 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ktaapp/services/apiwilayahservice.dart';
+import 'package:ktaapp/services/firebaseservice.dart';
 
 class RegisterKtaController extends GetxController {
   static RegisterKtaController get instance => Get.find();
 
+  final namaTextEditingController = TextEditingController();
+  final digitPertama = TextEditingController();
+  final digitKedua = TextEditingController();
+  final digitKetiga = TextEditingController();
+  final digitKeEmpat = TextEditingController();
+  final nomorIndukTextEditingController = TextEditingController();
+  final _firebaseService = FirebaseService();
   final RxList daftarProvinsi = [].obs;
   final RxList daftarKabupaten = [].obs;
   final RxList daftarKecamatan = [].obs;
@@ -62,9 +72,50 @@ class RegisterKtaController extends GetxController {
     }
   }
 
+  Future<void> saveDataAnggota() async {
+    try {
+      openDialig();
+      String noPensiun =
+          '${digitPertama.text}-${digitKedua.text}-${digitKetiga.text}-${digitKeEmpat.text}';
+      await _firebaseService.saveDataAnggota(
+          namaTextEditingController.text,
+          noPensiun,
+          nomorIndukTextEditingController.text.trim(),
+          provname,
+          kabname,
+          kecname,
+          imageFile!.path);
+      Get.back();
+      Get.snackbar("Sukses", "Data keanggotaan kamu berhasil disimpan",
+          backgroundColor: Colors.green[800], colorText: Colors.white);
+    } catch (e) {
+      Get.back();
+      Get.snackbar("Error", "Gagal menyimpan data siswa");
+    }
+  }
+
   void resetImageSelection() {
     pickedFile.value = null;
     isImageSelected = false;
     update();
+  }
+
+  void openDialig() {
+    Get.dialog(
+        Dialog(
+          backgroundColor: Colors.blue,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const SizedBox(
+            width: 100,
+            height: 150,
+            child: SpinKitCubeGrid(
+              size: 100,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        barrierDismissible: false);
   }
 }

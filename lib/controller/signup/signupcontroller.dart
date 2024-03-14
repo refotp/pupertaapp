@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:ktaapp/screens/home/homepage.dart';
-import 'package:ktaapp/screens/otp/otpscreen.dart';
+import 'package:ktaapp/helper/firebaseerror.dart';
+import 'package:ktaapp/model/usermodel.dart';
+import 'package:ktaapp/screens/transition/successregistraionscreen.dart';
+import 'package:ktaapp/services/authenticationrepository.dart';
+import 'package:ktaapp/services/userservice.dart';
 
 class SignUpController extends GetxController {
   static SignUpController get instance => Get.find();
 
-  final namaTextEditingController = TextEditingController();
   final phoneTextEditingController = TextEditingController();
   final confirmPassTextEditingController = TextEditingController();
   final passwordTextEditingController = TextEditingController();
@@ -16,55 +19,53 @@ class SignUpController extends GetxController {
   RxBool isHidden = true.obs;
   GlobalKey<FormState> stateForm = GlobalKey();
 
-  void signUp() {
-    try {
-      if (!stateForm.currentState!.validate()) {
-        return;
-      }
-      openDialog();
-      Future.delayed(const Duration(seconds: 3));
-      Get.to(() => const OtpScreen());
-    } catch (e) {}
-  }
-  // Future<void> signUp() async {
+  // void signUp() {
   //   try {
   //     if (!stateForm.currentState!.validate()) {
   //       return;
-  //     } else {
-  //       openDialog();
-  //       final userCredential = await AuthenticationRepository.instance
-  //           .registerWithEmailAndPassword(
-  //               emailTextEditingController.text.trim(),
-  //               passwordTextEditingController.text);
-  //       final newUser = UserModel(
-  //           id: userCredential.user!.uid,
-  //           name: namaTextEditingController.text,
-  //           email: emailTextEditingController.text,
-  //           phoneNumber: int.parse(phoneTextEditingController.text),
-  //           nik: int.parse(nikTextEditingController.text),
-  //           password: passwordTextEditingController.text);
-  //       final userRepository = Get.put(UserRepository());
-  //       await userRepository.saveUserData(newUser);
-  //       onRegistrationSuccess();
   //     }
-  //   } on FirebaseAuthException catch (e) {
-  //     Get.back();
-  //     switch (e.code) {
-  //       case 'invalid-email':
-  //         AuthErrorHandling.invalidEmail();
-  //         break;
-  //       case 'invalid-password':
-  //         AuthErrorHandling.invalidPassword();
-  //         break;
-  //       case 'email-already-exists':
-  //         AuthErrorHandling.emailAlreadyExists();
-  //         break;
-  //       case 'phone-number-already-exists':
-  //         AuthErrorHandling.phoneNumberAlreadyExists();
-  //         break;
-  //     }
-  //   }
+  //     openDialog();
+  //     Future.delayed(const Duration(seconds: 3));
+  //     Get.to(() => const );
+  //   } catch (e) {}
   // }
+  Future<void> signUp() async {
+    try {
+      if (!stateForm.currentState!.validate()) {
+        return;
+      } else {
+        openDialog();
+        final userCredential = await AuthenticationRepository.instance
+            .registerWithEmailAndPassword(
+                emailTextEditingController.text.trim(),
+                passwordTextEditingController.text);
+        final newUser = UserModel(
+            id: userCredential.user!.uid,
+            name: '',
+            email: emailTextEditingController.text,
+            phoneNumber: phoneTextEditingController.text);
+        final userRepository = Get.put(UserService());
+        await userRepository.saveUserData(newUser);
+        onRegistrationSuccess();
+      }
+    } on FirebaseAuthException catch (e) {
+      Get.back();
+      switch (e.code) {
+        case 'invalid-email':
+          FirebaseAuthErrorHandling.invalidEmail();
+          break;
+        case 'invalid-password':
+          FirebaseAuthErrorHandling.invalidPassword();
+          break;
+        case 'email-already-exists':
+          FirebaseAuthErrorHandling.emailAlreadyExists();
+          break;
+        case 'phone-number-already-exists':
+          FirebaseAuthErrorHandling.phoneNumberAlreadyExists();
+          break;
+      }
+    }
+  }
 
   void openDialog() {
     Get.dialog(
@@ -85,11 +86,11 @@ class SignUpController extends GetxController {
         barrierDismissible: false);
   }
 
-  // void onRegistrationSuccess() {
-  //   Get.off(() => const SuccessRegistraionScreen());
+  void onRegistrationSuccess() {
+    Get.off(() => const SuccessRegistraionScreen());
 
-  //   Future.delayed(const Duration(seconds: 5), () {
-  //     AuthenticationRepository.instance.pindahHalaman();
-  //   });
-  // }
+    Future.delayed(const Duration(seconds: 5), () {
+      AuthenticationRepository.instance.pindahHalaman();
+    });
+  }
 }

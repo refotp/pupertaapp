@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "599796798573",
+    "project_id": "puperta-49ec8",
+    "storage_bucket": "puperta-49ec8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599796798573:android:57b77a04c31fb8f41cdb64",
+        "android_client_info": {
+          "package_name": "com.pupertamina.ktaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL5ulygGyO6DG7Ks_urroGMQ5_0w9Ovwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

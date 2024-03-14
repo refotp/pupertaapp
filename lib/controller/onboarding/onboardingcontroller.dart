@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/screens/login/loginpage.dart';
 import 'package:ktaapp/widgets/onboarding/navigatetologin.dart';
@@ -18,8 +19,8 @@ class OnBoardingController extends GetxController {
 
   void nextPage() {
     if (currentIndex.value == 2) {
-      // final storage = GetStorage();
-      // storage.write('isFirstTime', false);
+      final storage = GetStorage();
+      storage.write('isFirstTime', false);
       Get.offAll(() => const LoginPage());
     } else {
       pageController.nextPage(

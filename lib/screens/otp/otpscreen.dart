@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/otp/otpcontroller.dart';
 

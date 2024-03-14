@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/screens/editprofile/editprofile.dart';
+import 'package:ktaapp/services/authenticationrepository.dart';
 import 'package:ktaapp/widgets/common/appbar.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -192,34 +193,6 @@ class ProfilePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                InkWell(
-                  overlayColor:
-                      const MaterialStatePropertyAll(Colors.transparent),
-                  onTap: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      decoration: BoxDecoration(
-                        color: ColorConst.tersier,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const ListTile(
-                        leading: Icon(
-                          CupertinoIcons.person_crop_square_fill,
-                          color: ColorConst.sekunder,
-                        ),
-                        textColor: Colors.white,
-                        title: Text('Kartu Tanda Anggota'),
-                        trailing: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -232,7 +205,9 @@ class ProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    AuthenticationRepository.instance.logout();
+                  },
                   overlayColor:
                       const MaterialStatePropertyAll(Colors.transparent),
                   child: Padding(

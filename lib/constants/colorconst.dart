@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ColorConst {
   static const abu = Color.fromARGB(255, 70, 70, 70);
   static const sekunder = Color.fromARGB(255, 127, 199, 217);
-  static const primer = Color.fromARGB(255, 72, 56, 192);
+  static const primer = Color.fromARGB(255, 65, 70, 162);
   static const tersier = Color.fromARGB(255, 15, 16, 53);
   static const komplementeri = Color.fromARGB(255, 220, 242, 241);
 }

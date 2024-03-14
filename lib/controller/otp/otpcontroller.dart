@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:ktaapp/screens/home/homepage.dart';
 import 'package:ktaapp/screens/navigation/navigation.dart';
-import 'package:ktaapp/screens/transition/successloginscreen.dart';
 import 'package:ktaapp/screens/transition/successregistraionscreen.dart';
 
 class OtpController extends GetxController {

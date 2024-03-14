@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/registerkta/registerktacontroller.dart';
 import 'package:ktaapp/helper/validator.dart';
 import 'package:ktaapp/widgets/common/inputdecoration.dart';
+import 'package:ktaapp/widgets/registerkta/nomorpensiun.dart';
 import 'package:ktaapp/widgets/signup/titlefield.dart';
 
 class RegisterKta extends StatelessWidget {
@@ -80,6 +82,7 @@ class RegisterKta extends StatelessWidget {
                       validator: (value) =>
                           Validator.validateEmptyText('Nama Lengkap', value),
                       keyboardType: TextInputType.name,
+                      controller: controller.namaTextEditingController,
                       cursorColor: ColorConst.sekunder,
                       cursorOpacityAnimates: true,
                       decoration: textFieldDecoration('Nama Lengkap anda'),
@@ -88,13 +91,64 @@ class RegisterKta extends StatelessWidget {
                       height: 20,
                     ),
                     const TitleField(title: 'Nomor pensiun pertamina'),
-                    TextFormField(
-                      validator: (value) =>
-                          Validator.validateEmptyText('Nomor pensiun', value),
-                      keyboardType: TextInputType.number,
-                      cursorColor: ColorConst.sekunder,
-                      cursorOpacityAnimates: true,
-                      decoration: textFieldDecoration('Nomor pensiun anda'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        NomorPensiun(
+                          isSix: false,
+                          controller: controller.digitPertama,
+                          maxLength: 2,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          child: const Text(
+                            '-',
+                            style: TextStyle(
+                                color: ColorConst.tersier,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        NomorPensiun(
+                          isSix: false,
+                          controller: controller.digitKedua,
+                          maxLength: 2,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          child: const Text(
+                            '-',
+                            style: TextStyle(
+                                color: ColorConst.tersier,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        NomorPensiun(
+                          isSix: true,
+                          controller: controller.digitKetiga,
+                          maxLength: 6,
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          child: const Text(
+                            '-',
+                            style: TextStyle(
+                                color: ColorConst.tersier,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w900),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                        NomorPensiun(
+                          isSix: false,
+                          controller: controller.digitKeEmpat,
+                          maxLength: 2,
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
@@ -104,6 +158,7 @@ class RegisterKta extends StatelessWidget {
                       validator: (value) => Validator.validateEmptyText(
                           'Nomor Induk Kependudukan anda', value),
                       keyboardType: TextInputType.number,
+                      controller: controller.nomorIndukTextEditingController,
                       cursorColor: ColorConst.sekunder,
                       cursorOpacityAnimates: true,
                       decoration:
@@ -291,14 +346,16 @@ class RegisterKta extends StatelessWidget {
                       child: SizedBox(
                         width: 160,
                         height: 160,
-                        child: Obx(() => controller.pickedFile.value == null
-                            ? Image.asset(
-                                'assets/registerkta/avatar-1577909_1280.png',
-                              )
-                            : Image.file(
-                                File(controller.imageFile!.path),
-                                fit: BoxFit.fitWidth,
-                              )),
+                        child: Obx(
+                          () => controller.pickedFile.value == null
+                              ? Image.asset(
+                                  'assets/registerkta/avatar-1577909_1280.png',
+                                )
+                              : Image.file(
+                                  File(controller.imageFile!.path),
+                                  fit: BoxFit.fitWidth,
+                                ),
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -378,7 +435,9 @@ class RegisterKta extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  controller.saveDataAnggota();
+                },
                 child: Text(
                   'Submit',
                   style: TextStyle(

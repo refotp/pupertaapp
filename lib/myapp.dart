@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
-import 'package:ktaapp/screens/onboarding/onboarding.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
             fontFamily: 'Nunito',
             colorScheme: ColorScheme.fromSeed(seedColor: ColorConst.primer)),
-        home: const OnBoardingPage(),
+        home: const Center(child: CircularProgressIndicator()),
       ),
     );
   }
