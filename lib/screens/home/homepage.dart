@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/home/homepagecontroller.dart';
+import 'package:ktaapp/screens/detailkta/detailktapage.dart';
 import 'package:ktaapp/screens/registerkta/registerktapage.dart';
 import 'package:ktaapp/services/authenticationrepository.dart';
 import 'package:ktaapp/widgets/common/appbar.dart';
@@ -25,7 +24,7 @@ class HomePage extends StatelessWidget {
           const AppBarWidget(
             title: 'Home',
             image: 'assets/profile/home-4329930-3599741.png',
-            useActions: false,
+            useLeading: true,
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -85,7 +84,11 @@ class HomePage extends StatelessWidget {
                             InkWell(
                               overlayColor: const MaterialStatePropertyAll(
                                   Colors.transparent),
-                              onTap: () {},
+                              onTap: () {
+                                Get.to(() => DetailKtaPage(
+                                      data: snapshot,
+                                    ));
+                              },
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),

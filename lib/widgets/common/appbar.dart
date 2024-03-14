@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/widgets/common/menuwidget.dart';
 
@@ -7,14 +8,14 @@ class AppBarWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
-    required this.useActions,
+    required this.useLeading,
   });
   final String title, image;
-  final bool useActions;
+  final bool useLeading;
   @override
   Widget build(BuildContext context) {
     return SliverAppBar.large(
-      expandedHeight: 140,
+      expandedHeight: 160,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,12 +31,18 @@ class AppBarWidget extends StatelessWidget {
               image,
               fit: BoxFit.fill,
             ),
-          )
+          ),
         ],
       ),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20))),
-      leading: const MenuWidget(),
+      leading: useLeading
+          ? const MenuWidget()
+          : IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(Icons.arrow_back_rounded),
+              color: Colors.white,
+            ),
       backgroundColor: ColorConst.primer,
       centerTitle: true,
     );

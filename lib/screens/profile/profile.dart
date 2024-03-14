@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
           const AppBarWidget(
             title: 'My Profile',
             image: 'assets/profile/header halaman profil.png',
-            useActions: true,
+            useLeading: true,
           ),
           SliverToBoxAdapter(
             child: Column(
