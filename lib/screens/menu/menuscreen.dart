@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/home/homepagecontroller.dart';
@@ -7,8 +9,10 @@ import 'package:ktaapp/controller/home/homepagecontroller.dart';
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key, required this.controller});
   final HomePageController controller;
+
   @override
   Widget build(BuildContext context) {
+    print(controller.isSuper.value);
     return Scaffold(
       backgroundColor: ColorConst.tersier,
       body: Theme(
@@ -22,16 +26,33 @@ class MenuScreen extends StatelessWidget {
               decoration: BoxDecoration(
                   color: Colors.white12,
                   borderRadius: BorderRadius.circular(50)),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Image.asset(
                 'assets/login_signup/Untitled-1 copy.png',
                 width: 50,
                 height: 50,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             _buildMenuItem(context, 0, 'Home', Ionicons.home),
             _buildMenuItem(context, 1, 'Profile', Ionicons.person),
+            Obx(
+              () => Container(
+                child: controller.isPengurus.value ||
+                        controller.isSuper.value ||
+                        controller.isKetua.value
+                    ? _buildMenuItem(context, 2, 'Anggota', Icons.group)
+                    : Container(),
+              ),
+            ),
+            Obx(
+              () => Container(
+                child: controller.isSuper.value || controller.isKetua.value
+                    ? _buildMenuItem(context, 3, 'Super Admin',
+                        CupertinoIcons.lock_shield_fill)
+                    : Container(),
+              ),
+            ),
             const Spacer(
               flex: 3,
             ),

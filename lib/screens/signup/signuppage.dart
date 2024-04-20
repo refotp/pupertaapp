@@ -6,6 +6,7 @@ import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/signup/signupcontroller.dart';
 import 'package:ktaapp/helper/validator.dart';
 import 'package:ktaapp/screens/login/loginpage.dart';
+import 'package:ktaapp/widgets/common/footer.dart';
 import 'package:ktaapp/widgets/common/header.dart';
 import 'package:ktaapp/widgets/common/inputdecoration.dart';
 import 'package:ktaapp/widgets/signup/confirmtpasstextfield.dart';
@@ -64,7 +65,39 @@ class SignUpPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const TitleField(title: 'Password'),
+                      const TitleField(title: 'Status'),
+                      DropdownButtonFormField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide.none),
+                            filled: true,
+                            fillColor: ColorConst.sekunder.withOpacity(0.25),
+                            contentPadding: const EdgeInsets.only(
+                                top: 16, left: 10, bottom: 16),
+                            prefix: const Icon(
+                              Icons.admin_panel_settings,
+                              color: ColorConst.abu,
+                            ),
+                          ),
+                          items: const [
+                            DropdownMenuItem(
+                              value: 'Anggota',
+                              child: Text('Anggota'),
+                            ),
+                            DropdownMenuItem(
+                              value: 'Pengurus',
+                              child: Text('Pengurus'),
+                            ),
+                          ],
+                          style: const TextStyle(color: ColorConst.tersier),
+                          onChanged: (onChanged) {
+                            controller.role.value = onChanged!;
+                          }),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const TitleField(title: 'Password e-KTA'),
                       PassTextField(
                         controller: controller,
                         label: 'kuD4LauTbeRkepAlaB4d4K12',
@@ -72,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const TitleField(title: 'Konfirmasi Password'),
+                      const TitleField(title: 'Konfirmasi Password e-KTA'),
                       ConfirmPassTextField(
                         controller: controller,
                         label: 'kuD4LauTbeRkepAlaB4d4K12',
@@ -130,7 +163,8 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                // Footer(tekan: controller.googleSignIn)
               ],
             ),
           ),

@@ -21,7 +21,7 @@ class ConfirmPassTextField extends StatelessWidget {
     return Obx(
       () => TextFormField(
         validator: (value) => Validator.validatePassword(
-            value, controller.passwordTextEditingController.text),
+            value!, controller.passwordTextEditingController.text),
         obscureText: controller.isHidden.value,
         controller: controller.confirmPassTextEditingController,
         cursorColor: Colors.amber[600],

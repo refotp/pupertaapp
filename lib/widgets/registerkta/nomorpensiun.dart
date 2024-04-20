@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ktaapp/constants/colorconst.dart';
+import 'package:ktaapp/helper/validator.dart';
 
 class NomorPensiun extends StatelessWidget {
   const NomorPensiun({
@@ -19,14 +20,17 @@ class NomorPensiun extends StatelessWidget {
       width: !isSix ? 38 : 78,
       height: 64,
       child: TextFormField(
+        validator: (value) =>
+            Validator.validateEmptyText('Nama Lengkap', value),
         controller: controller,
         onChanged: (value) {
           if (value.length == maxLength) {
+            controller.text = value;
             FocusScope.of(context).nextFocus();
           }
         },
         cursorColor: ColorConst.tersier,
-        textAlign: TextAlign.start,
+        textAlign: TextAlign.center,
         decoration: InputDecoration(
             filled: true,
             fillColor: ColorConst.sekunder.withOpacity(0.25),

@@ -1,11 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/otp/otpcontroller.dart';
 
-class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+class VerifAdmin extends StatelessWidget {
+  const VerifAdmin(
+      {super.key,
+      required this.email,
+      required this.noTelp,
+      required this.peran,
+      required this.password});
+  final String email, noTelp, peran, password;
 
   @override
   Widget build(BuildContext context) {
@@ -52,36 +57,24 @@ class OtpScreen extends StatelessWidget {
                   width: 200,
                   height: 200,
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
-                  'Verifikasi OTP',
+                  'Verifikasi Admin',
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,
                       fontSize: 24),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text.rich(
-                    TextSpan(
-                        text: 'Masukan kode yang dikirim ke ',
-                        style: TextStyle(
-                            color: Colors.white.withOpacity(0.85),
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14),
-                        children: const [
-                          TextSpan(
-                              text: '+62 85869548854',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600))
-                        ]),
-                  ),
-                ),
-                const Text(
-                  'Periksa sms anda',
-                  style: TextStyle(color: Colors.white70),
-                ),
+                const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      'Masukan kode admin',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -93,11 +86,11 @@ class OtpScreen extends StatelessWidget {
                         width: 68,
                         height: 64,
                         child: TextFormField(
-                          onSaved: (pin) {
-                            controller.pin4.value = pin!;
-                          },
+                          controller: controller.pinSat,
                           onChanged: (value) {
                             if (value.length == 1) {
+                              controller.pinSat.value =
+                                  TextEditingValue(text: value);
                               FocusScope.of(context).nextFocus();
                             }
                           },
@@ -128,11 +121,11 @@ class OtpScreen extends StatelessWidget {
                         width: 68,
                         height: 64,
                         child: TextFormField(
-                          onSaved: (pin) {
-                            controller.pin4.value = pin!;
-                          },
+                          controller: controller.pinDua,
                           onChanged: (value) {
                             if (value.length == 1) {
+                              controller.pinDua.value =
+                                  TextEditingValue(text: value);
                               FocusScope.of(context).nextFocus();
                             }
                           },
@@ -163,11 +156,11 @@ class OtpScreen extends StatelessWidget {
                         width: 68,
                         height: 64,
                         child: TextFormField(
-                          onSaved: (pin) {
-                            controller.pin4.value = pin!;
-                          },
+                          controller: controller.pinTiga,
                           onChanged: (value) {
                             if (value.length == 1) {
+                              controller.pinTiga.value =
+                                  TextEditingValue(text: value);
                               FocusScope.of(context).nextFocus();
                             }
                           },
@@ -198,12 +191,12 @@ class OtpScreen extends StatelessWidget {
                         width: 68,
                         height: 64,
                         child: TextFormField(
-                          onSaved: (pin) {
-                            controller.pin4.value = pin!;
-                          },
+                          controller: controller.pinEmpat,
                           onChanged: (value) {
                             if (value.length == 1) {
-                              controller.verify();
+                              controller.pinEmpat.value =
+                                  TextEditingValue(text: value);
+                              controller.verify(email, noTelp, peran, password);
                             }
                           },
                           cursorColor: ColorConst.sekunder,

@@ -29,7 +29,7 @@ class AppBarWidget extends StatelessWidget {
             height: 60,
             child: Image.asset(
               image,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
         ],

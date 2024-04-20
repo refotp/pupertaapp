@@ -16,7 +16,7 @@ class Header extends StatelessWidget {
       children: [
         Center(
           child: SizedBox(
-            height: 120.h,
+            height: 100.h,
             child: Image.asset(
               "assets/login_signup/Untitled-1.png",
               width: 240.w,

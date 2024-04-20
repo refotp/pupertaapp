@@ -1,9 +1,8 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/async.dart';
 import 'package:get/get.dart';
+import 'package:ktaapp/constants/secrets.dart';
+import 'package:ktaapp/services/supabaseservice.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:open_filex/open_filex.dart';
@@ -11,18 +10,29 @@ import 'package:pdf/widgets.dart' as pw;
 
 class DetailKtaController extends GetxController {
   static DetailKtaController get instance => Get.find();
+  final isLoading = true.obs;
+  final isHidden = true.obs;
 
-  Future<void> generatePdf(
-      AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> data) async {
+  final _supabaseService = SupabaseService();
+
+  Future<void> getUser(data) async {
+    final userId = SupBase.supabase.auth.currentUser?.id;
+    final kartuId = data['user_id'];
+    final role = await _supabaseService.getUserRole(userId!);
+    if (userId == kartuId || role == 'Super Admin' || role == 'Ketua') {
+      isHidden.value = false;
+    }
+
+    isLoading.value = false;
+  }
+
+  Future<void> generatePdf(dynamic data) async {
     final pdf = pw.Document();
-
-    // Load the image from the asset bundle
     final byteData = await rootBundle.load('assets/home/background kartu.png');
     final Uint8List imageData = byteData.buffer.asUint8List();
     final byteData2 =
-        await rootBundle.load('assets/login_signup/Untitled-1 copy.png');
+        await rootBundle.load('assets/login_signup/logokartupuperta.png');
     final Uint8List imageData2 = byteData2.buffer.asUint8List();
-    // Convert the image to a PdfImage object
     final imageProvider = pw.MemoryImage(imageData);
     final imageProvider2 = pw.MemoryImage(imageData2);
 
@@ -30,7 +40,8 @@ class DetailKtaController extends GetxController {
       build: (context) {
         return pw.Column(children: [
           pw.Container(
-            width: 260,
+            width: 200,
+            height: 132,
             decoration: pw.BoxDecoration(
                 borderRadius: pw.BorderRadius.circular(20),
                 gradient: const pw.RadialGradient(
@@ -54,8 +65,8 @@ class DetailKtaController extends GetxController {
                     mainAxisAlignment: pw.MainAxisAlignment.end,
                     children: [
                       pw.Container(
-                          width: 40,
-                          height: 40,
+                          width: 28,
+                          height: 28,
                           child: pw.Image(imageProvider2)),
                     ],
                   ),
@@ -69,14 +80,14 @@ class DetailKtaController extends GetxController {
                           style: pw.TextStyle(
                               color: PdfColors.white,
                               fontWeight: pw.FontWeight.normal,
-                              fontSize: 16),
+                              fontSize: 12),
                         ),
                         pw.Text(
-                          data.data?['Nama Lengkap'],
+                          data['fullname'],
                           style: pw.TextStyle(
                               color: PdfColors.white,
                               fontWeight: pw.FontWeight.bold,
-                              fontSize: 16),
+                              fontSize: 12),
                         ),
                         pw.SizedBox(
                           height: 4,
@@ -86,14 +97,14 @@ class DetailKtaController extends GetxController {
                           style: pw.TextStyle(
                               color: PdfColors.white,
                               fontWeight: pw.FontWeight.normal,
-                              fontSize: 16),
+                              fontSize: 12),
                         ),
                         pw.Text(
-                          data.data?['Nomor Pensiun'],
+                          data['no_anggota'],
                           style: pw.TextStyle(
                               color: PdfColors.white,
                               fontWeight: pw.FontWeight.bold,
-                              fontSize: 16),
+                              fontSize: 12),
                         ),
                       ],
                     ),
@@ -108,8 +119,6 @@ class DetailKtaController extends GetxController {
     final output = await getTemporaryDirectory();
     final file = File("${output.path}/example.pdf");
     await file.writeAsBytes(await pdf.save());
-
-    // Open the PDF file using the `open_file` package
     OpenFilex.open(file.path);
   }
 }

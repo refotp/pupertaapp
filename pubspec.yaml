@@ -28,11 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cloud_firestore: 4.15.8
   cupertino_icons: ^1.0.2
-  firebase_auth: 4.17.8
-  firebase_core: 2.27.0
-  firebase_storage: 11.6.9
   flutter:
     sdk: flutter
   flutter_native_splash: 2.3.10
@@ -41,6 +37,7 @@ dependencies:
   flutter_zoom_drawer: ^3.2.0
   get: ^4.6.6
   get_storage: ^2.1.1
+  google_sign_in: ^6.2.1
   http: 1.2.0
   image_picker: ^1.0.7
   ionicons: ^0.2.2
@@ -49,12 +46,19 @@ dependencies:
   path_provider: ^2.1.2
   pdf: ^3.10.8
   smooth_page_indicator: ^1.1.0
+  supabase: ^2.0.8
+  supabase_flutter: ^2.3.4
 
 dev_dependencies:
+  flutter_launcher_icons: 0.13.1
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  image_path: "assets/login_signup/logo.jpg" 
+  android: true
+  ios: true
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
@@ -72,6 +76,7 @@ flutter:
     - assets/registerkta/
     - assets/profile/
     - assets/detailkta/
+    - assets/daftar_anggota/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

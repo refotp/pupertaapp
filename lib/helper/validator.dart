@@ -7,13 +7,13 @@ class Validator {
   }
 
   static String? validatePassword(String? confirmPass, String? pass) {
+    // print('a');
     if (confirmPass == null || confirmPass.isEmpty) {
-      if (pass != confirmPass) {
-        return 'Periksa kembali password yang anda inputkan';
-      }
       return 'Harap isi konfirmasi password terlebih dahulu';
+    } else if (pass != confirmPass) {
+      return 'Periksa kembali password yang anda inputkan';
+    } else {
+      return null;
     }
-
-    return null;
   }
 }

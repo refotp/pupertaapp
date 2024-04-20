@@ -10,4 +10,13 @@ class StringConst {
     'assets/onboarding/Animation - 1709467132747.json',
     'assets/onboarding/Animation - 1709466234770.json'
   ];
+
+  static const dropDownDaftarAnggotaPengurus = [
+    'Pengurus',
+  ];
+
+  static const dropDownDaftarAnggotaSuperKetua = [
+    'Pengurus',
+    'Super Admin',
+  ];
 }

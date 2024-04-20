@@ -1,11 +1,13 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
-import 'package:ktaapp/helper/firebaseerror.dart';
-import 'package:ktaapp/screens/navigation/navigation.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:ktaapp/constants/secrets.dart';
+import 'package:ktaapp/controller/home/homepagecontroller.dart';
+import 'package:ktaapp/screens/googlesignupsignin/googleregscreen.dart';
 import 'package:ktaapp/screens/transition/successloginscreen.dart';
 import 'package:ktaapp/services/authenticationrepository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
@@ -21,79 +23,115 @@ class LoginController extends GetxController {
       } else {
         openDialog();
         await AuthenticationRepository.instance
-            .logIn(emailController.text, passwordController.text);
+            .login(emailController.text, passwordController.text);
         onLoginSuccess();
       }
-    } on FirebaseAuthException catch (e) {
+    } catch (e) {
       Get.back();
-      switch (e.code) {
-        case 'invalid-credential':
-          FirebaseAuthErrorHandling.invalidCredential();
-          break;
-        case 'too-many-requests':
-          FirebaseAuthErrorHandling.tooManyRequest();
-          break;
-        case 'invalid-email':
-          FirebaseAuthErrorHandling.invalidEmail();
-          break;
+      print(e);
+      if (e is AuthException) {
+        switch (e.statusCode) {
+          case '400':
+            Get.snackbar('', '',
+                duration: const Duration(seconds: 3),
+                snackPosition: SnackPosition.TOP,
+                icon: const Icon(
+                  Icons.warning_rounded,
+                  color: Colors.white,
+                ),
+                backgroundColor: Colors.red,
+                colorText: Colors.white,
+                titleText: const Text(
+                  'Error',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
+                ),
+                messageText: const Text(
+                  'Periksa kembali email atau password anda',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ));
+            break;
+          default:
+            Get.snackbar('Error', e.message);
+        }
+        // Menangani kesalahan autentikasi, misalnya email atau password salah
+      } else {
+        rethrow;
       }
     }
   }
-  // void login() {
-  //   if (!formState.currentState!.validate()) {
-  //     return;
-  //   } else {
-  //     bukaDialog();
-  //     Future.delayed(const Duration(seconds: 3), () {
-  //       onLoginSuccess();
-  //     });
-  //   }
+}
 
-  //   // ;
-  // }
-
-  void openDialog() {
-    Get.dialog(
-        Dialog(
-          backgroundColor: Colors.blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const SizedBox(
-            width: 100,
-            height: 150,
-            child: SpinKitCubeGrid(
-              size: 100,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        barrierDismissible: false);
+void googleSignIn() async {
+  try {
+    final authRepo = Get.put(AuthenticationRepository());
+    bukaDialog();
+    await authRepo.googleSignIn();
+    checkUser();
+  } catch (e) {
+    Get.back();
+    throw 'Error : $e';
   }
+}
 
-  bukaDialog() {
-    Get.dialog(
-        Dialog(
-          backgroundColor: Colors.blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: const SizedBox(
-            width: 100,
-            height: 150,
-            child: SpinKitCubeGrid(
-              size: 100,
-              color: Colors.white,
-            ),
+void openDialog() {
+  Get.dialog(
+      Dialog(
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const SizedBox(
+          width: 100,
+          height: 150,
+          child: SpinKitCubeGrid(
+            size: 100,
+            color: Colors.white,
           ),
         ),
-        barrierDismissible: false);
+      ),
+      barrierDismissible: false);
+}
+
+bukaDialog() {
+  Get.dialog(
+      Dialog(
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const SizedBox(
+          width: 100,
+          height: 150,
+          child: SpinKitCubeGrid(
+            size: 100,
+            color: Colors.white,
+          ),
+        ),
+      ),
+      barrierDismissible: false);
+}
+
+void checkUser() async {
+  final userEmail = SupBase.supabase.auth.currentUser!.email;
+  final response = await SupBase.supabase
+      .from('user_data')
+      .select('email')
+      .eq('email', userEmail!);
+  if (response.isEmpty) {
+    Get.to(() => const GoogleRegScreen());
+  } else {
+    AuthenticationRepository.instance.pindahHalaman();
   }
 }
 
 void onLoginSuccess() {
   Get.off(() => const SuccessLoginScreen());
   Future.delayed(const Duration(seconds: 5), () {
-    Get.offAll(() => const NavigationPage());
+    final homePage = HomePageController();
+    homePage.onInit();
+    AuthenticationRepository.instance.pindahHalaman();
   });
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
 import 'package:ktaapp/controller/login/loginpagecontroller.dart';
 import 'package:ktaapp/screens/signup/signuppage.dart';
+import 'package:ktaapp/widgets/common/footer.dart';
 import 'package:ktaapp/widgets/login/emailtextfield.dart';
 import 'package:ktaapp/widgets/common/header.dart';
 import 'package:ktaapp/widgets/login/passwordtextfield.dart';
@@ -104,6 +105,9 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                // Footer(
+                //   tekan: () {},
+                // ),
               ],
             ),
           ),

@@ -1,8 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ktaapp/constants/colorconst.dart';
@@ -13,8 +11,8 @@ import 'package:ktaapp/widgets/registerkta/nomorpensiun.dart';
 import 'package:ktaapp/widgets/signup/titlefield.dart';
 
 class RegisterKta extends StatelessWidget {
-  const RegisterKta({super.key});
-
+  const RegisterKta({super.key, required this.role});
+  final String role;
   @override
   Widget build(BuildContext context) {
     final controller = RegisterKtaController();
@@ -74,6 +72,7 @@ class RegisterKta extends StatelessWidget {
                 height: 20,
               ),
               Form(
+                key: controller.stateForm,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -341,6 +340,16 @@ class RegisterKta extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
+                    TextFormField(
+                      enabled: false,
+                      keyboardType: TextInputType.phone,
+                      initialValue: role,
+                      cursorColor: const Color.fromARGB(255, 18, 18, 20),
+                      decoration: textFieldDecoration(role),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     const TitleField(title: 'Unggah foto anda'),
                     Center(
                       child: SizedBox(
@@ -436,7 +445,7 @@ class RegisterKta extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  controller.saveDataAnggota();
+                  controller.saveDataAnggota(role: role);
                 },
                 child: Text(
                   'Submit',
